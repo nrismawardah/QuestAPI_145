@@ -1,4 +1,4 @@
-package com.example.consumerestapi.dependenciesinjection
+package com.example.consumerestapi
 
 import android.app.Application
 import com.example.consumerestapi.repository.AppContainer
