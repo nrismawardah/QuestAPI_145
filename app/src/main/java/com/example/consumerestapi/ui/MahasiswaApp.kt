@@ -1,4 +1,4 @@
-package com.example.consumerestapi
+package com.example.consumerestapi.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
