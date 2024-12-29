@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -36,7 +37,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.consumerestapi.PenyediaViewModel
+import com.example.consumerestapi.ui.PenyediaViewModel
 import com.example.consumerestapi.R
 import com.example.consumerestapi.model.Mahasiswa
 import com.example.consumerestapi.ui.customwidget.TopAppBar
@@ -83,7 +84,7 @@ fun HomeScreen(
         HomeStatus(
             homeUiState = viewModel.mhsUIState,
             retryAction = { viewModel.getMhs() },
-            modifier = Modifier.padding(innerPadding),
+            modifier = Modifier.padding(innerPadding).offset(y = (-70).dp),
             onDetailClick = onDetailClick,
             onDeleteClick = {
                 viewModel.deleteMhs(it.nim)
@@ -125,7 +126,7 @@ fun HomeStatus(
 @Composable
 fun OnLoading(modifier: Modifier = Modifier) {
     Image(
-        modifier = modifier.size(200.dp),
+        modifier = modifier.size(20.dp),
         painter = painterResource(R.drawable.loading_img),
         contentDescription = stringResource(R.string.loading)
     )
@@ -140,7 +141,7 @@ fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier) {
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_connection_error),
-            contentDescription = ""
+            contentDescription = "",
         )
         Text(text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp))
         Button(onClick = retryAction) {
@@ -158,7 +159,7 @@ fun MhsLayout(
 ) {
     LazyColumn(
         modifier = modifier,
-        contentPadding = PaddingValues(16.dp),
+        contentPadding = PaddingValues(20.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(mahasiswa) { mahasiswa ->

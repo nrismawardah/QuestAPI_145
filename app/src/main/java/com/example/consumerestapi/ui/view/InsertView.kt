@@ -1,8 +1,13 @@
 package com.example.consumerestapi.ui.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
@@ -18,11 +23,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.consumerestapi.PenyediaViewModel
+import com.example.consumerestapi.ui.PenyediaViewModel
 import com.example.consumerestapi.ui.customwidget.TopAppBar
 import com.example.consumerestapi.ui.navigation.DestinasiNavigasi
 import com.example.consumerestapi.ui.viewmodel.InsertUiEvent
@@ -46,7 +52,9 @@ fun EntryMhsScreen(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     Scaffold(
-        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.fillMaxSize()
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
+
         topBar = {
             TopAppBar(
                 title = DestinasiEntry.titleRes,
@@ -66,7 +74,7 @@ fun EntryMhsScreen(
                 }
             },
             modifier = Modifier
-                .padding(innerPadding)
+                .padding(innerPadding).offset(y = (-70).dp)
                 .verticalScroll(rememberScrollState())
                 .fillMaxWidth()
         )
@@ -81,8 +89,8 @@ fun EntryBody(
     modifier: Modifier = Modifier
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(18.dp),
-        modifier = modifier.padding(12.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier.fillMaxSize().padding(20.dp)
     ) {
         FormInput(
             insertUiEvent = insertUiState.insertUiEvent,
@@ -109,7 +117,7 @@ fun FormInput(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         OutlinedTextField(
             value = insertUiEvent.nama,
@@ -163,12 +171,12 @@ fun FormInput(
         if (enabled) {
             Text(
                 text = "Isi Semua Data!",
-                modifier = Modifier.padding(12.dp)
+                modifier = Modifier.padding(8.dp)
             )
         }
         Divider(
-            thickness = 8.dp,
-            modifier = Modifier.padding(12.dp)
+            thickness = 2.dp,
+            modifier = Modifier.padding(5.dp)
         )
     }
 }
