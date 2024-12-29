@@ -9,9 +9,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.consumerestapi.ui.view.DestinasiDetail
+import com.example.consumerestapi.ui.view.DestinasiEdit
 import com.example.consumerestapi.ui.view.DestinasiEntry
 import com.example.consumerestapi.ui.view.DestinasiHome
 import com.example.consumerestapi.ui.view.DetailView
+import com.example.consumerestapi.ui.view.EditView
 import com.example.consumerestapi.ui.view.EntryMhsScreen
 import com.example.consumerestapi.ui.view.HomeScreen
 
@@ -56,10 +58,33 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                     navigateBack = {
                         navController.navigateUp()
                     },
-                    onEditClick = {}
+                    onEditClick = { nim ->
+                        navController.navigate("${DestinasiEdit.route}/$nim")
+                        println(nim)
+                    }
                 )
             }
-
+        }
+        composable(
+            route = DestinasiEdit.routeWithArgs,
+            arguments = listOf(navArgument(DestinasiEdit.nim){
+                type = NavType.StringType
+            })
+        ){
+            EditView(
+                navigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateUp = {
+                    navController.navigate(
+                        DestinasiEdit.route
+                    ){
+                        popUpTo(DestinasiHome.route){
+                            inclusive = true
+                        }
+                    }
+                }
+            )
         }
     }
 }
