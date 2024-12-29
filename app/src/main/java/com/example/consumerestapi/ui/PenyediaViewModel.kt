@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.consumerestapi.MahasiswaApplications
 import com.example.consumerestapi.ui.viewmodel.DetailViewModel
+import com.example.consumerestapi.ui.viewmodel.EditViewModel
 import com.example.consumerestapi.ui.viewmodel.HomeViewModel
 import com.example.consumerestapi.ui.viewmodel.InsertViewModel
 
@@ -15,6 +16,7 @@ object PenyediaViewModel {
         initializer { HomeViewModel(mahasiswaApp().container.mahasiswaRepository) }
         initializer { InsertViewModel(mahasiswaApp().container.mahasiswaRepository) }
         initializer { DetailViewModel(createSavedStateHandle(), mahasiswaRepository = mahasiswaApp().container.mahasiswaRepository) }
+        initializer { EditViewModel(createSavedStateHandle(), mahasiswaRepository = mahasiswaApp().container.mahasiswaRepository) }
     }
 }
 
